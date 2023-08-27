@@ -1,0 +1,48 @@
+
+body {
+    background-color: lightgoldenrodyellow;
+  }
+  
+  body, p, h1, h2, h3, h4, h5, h6 {
+    color: rgb(240, 118, 69);
+  }
+  
+  
+  body {
+    border: 5px solid yellow;
+    margin: 20px;
+    padding: 20px; 
+  }
+
+  
+.candy-heart-button {
+    background-color: #ff6b6b; 
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+  }
+  
+  
+  .candy-heart-button::before {
+    content: "\2665"; 
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+  }
+  
+  
+  .candy-heart-button:hover {
+    background-color: #ff4d4d;
+  }
+  .centered-title {
+    text-align: center;
+  }
+  
