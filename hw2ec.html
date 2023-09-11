@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extra Credit Page</title>
+    <link rel="stylesheet" href="hw1.css" />
+    <style>
+      input:focus {
+        background-color: lightyellow;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>Exchange Rates</h1>
+    <p>
+      <button id="toggleInstructions">
+        -> Click to Show/Hide Instructions
+      </button>
+    </p>
+
+    <div id="instructions" style="display: none">
+      <p>The foreign exchange rates in June 2021</p>
+      <p>
+        Enter a dollar amount in the table below to see the corresponding
+        foreign exchange values.
+      </p>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Currency</th>
+          <th>Rate</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Euro</td>
+          <td>0.84</td>
+          <td><input type="text" id="euroValue" readonly /></td>
+        </tr>
+        <tr>
+          <td>Canadian Dollar</td>
+          <td>1.23</td>
+          <td><input type="text" id="canadianValue" readonly /></td>
+        </tr>
+        <tr>
+          <td>Hong Kong Dollar</td>
+          <td>7.76</td>
+          <td><input type="text" id="hongKongValue" readonly /></td>
+        </tr>
+        <tr>
+          <td>Japanese Yen</td>
+          <td>110.80</td>
+          <td><input type="text" id="japaneseYenValue" readonly /></td>
+        </tr>
+        <tr>
+          <td>Mexican Peso</td>
+          <td>19.82</td>
+          <td><input type="text" id="mexicanPesoValue" readonly /></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      Enter Amount of U.S. Dollars <input type="number" id="usDollarsInput" />
+    </p>
+
+    <script>
+      $(document).ready(function () {
+        $("#toggleInstructions").click(function () {
+          $("#instructions").toggle();
+        });
+
+        function convertCurrency(amount) {
+          $("#euroValue").val((amount * 0.84).toFixed(2));
+          $("#canadianValue").val((amount * 1.23).toFixed(2));
+          $("#hongKongValue").val((amount * 7.76).toFixed(2));
+          $("#japaneseYenValue").val((amount * 110.8).toFixed(2));
+          $("#mexicanPesoValue").val((amount * 19.82).toFixed(2));
+        }
+
+        $("#usDollarsInput").click(function () {
+          $(this).css("background-color", "lightyellow");
+        });
+
+        $("#usDollarsInput").change(function () {
+          var usDollars = parseFloat($(this).val());
+          if (!isNaN(usDollars)) {
+            convertCurrency(usDollars);
+          } else {
+            alert("Please enter a valid number for U.S. Dollars.");
+            $(this).val("");
+          }
+          $(this).css("background-color", "");
+        });
+      });
+    </script>
+    <p><a href="hw2.html">$ Return to Homework 2 $</a></p>
+  </body>
+</html>

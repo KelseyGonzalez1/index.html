@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="hw1.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+    <form id="calculatorForm">
+      <label for="num1">Input 1:</label>
+      <input type="text" id="num1" name="num1" required /><br />
+
+      <label for="num2">Input 2:</label>
+      <input type="text" id="num2" name="num2" required /><br />
+
+      <label for="num3">Input 3:</label>
+      <input type="text" id="num3" name="num3" required /><br />
+
+      <button type="button" id="calculateButton">Calculate!</button>
+      <button type="button" id="clearButton">Clear</button>
+
+      <textarea id="results" rows="6" cols="40" readonly></textarea>
+    </form>
+
+    <script>
+      $(document).ready(function () {
+        $("#calculateButton").click(function () {
+          var num1 = parseFloat($("#num1").val());
+          var num2 = parseFloat($("#num2").val());
+          var num3 = parseFloat($("#num3").val());
+
+          if (!isNaN(num1) && !isNaN(num2) && !isNaN(num3)) {
+            var sum = num1 + num2 + num3;
+            var average = sum / 3;
+            var product = num1 * num2 * num3;
+
+            var smallest = Math.min(num1, num2, num3);
+            var largest = Math.max(num1, num2, num3);
+
+            var resultsText =
+              "Sum: " +
+              sum +
+              "\n" +
+              "Average: " +
+              average.toFixed(2) +
+              "\n" +
+              "Product: " +
+              product +
+              "\n" +
+              "Smallest: " +
+              smallest +
+              "\n" +
+              "Largest: " +
+              largest;
+
+            $("#results").val(resultsText);
+            $("#results").fadeIn();
+          } else {
+            $("#results").val("Please enter valid numbers.");
+          }
+        });
+
+        $("#clearButton").click(function () {
+          $("#num1, #num2, #num3, #results").val("");
+          $("#results").fadeOut();
+        });
+      });
+    </script>
+    <p>
+      <a href="hw2.html">Done with the Calculations! Return to Homework 2</a>
+    </p>
+  </body>
+</html>
