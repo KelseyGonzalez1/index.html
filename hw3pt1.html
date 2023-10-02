@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Grades</title>
+    <link rel="stylesheet" href="hw1.css" />
+  </head>
+  <body>
+    <h1>Student Grades</h1>
+
+    <form id="gradeForm">
+      <label for="hwAvg">Homework Average:</label>
+      <input type="number" id="hwAvg" required min="0" max="100" /><br />
+
+      <label for="midExam">Mid-Term Exam Score:</label>
+      <input type="number" id="midExam" required min="0" max="100" /><br />
+
+      <label for="finalExam">Final Exam Score:</label>
+      <input type="number" id="finalExam" required min="0" max="100" /><br />
+
+      <label for="participation">Participation:</label>
+      <input
+        type="number"
+        id="participation"
+        required
+        min="0"
+        max="100"
+      /><br />
+
+      <button type="button" onclick="calculateGrade()">Submit</button>
+      <button type="button" onclick="clearForm()">Clear Form</button>
+    </form>
+
+    <div id="resultArea"></div>
+
+    <script>
+      function calculateGrade() {
+        // Get input values
+        var hwAvg = parseInt(document.getElementById("hwAvg").value);
+        var midExam = parseInt(document.getElementById("midExam").value);
+        var finalExam = parseInt(document.getElementById("finalExam").value);
+        var participation = parseInt(
+          document.getElementById("participation").value
+        );
+        if (
+          isNaN(hwAvg) ||
+          isNaN(midExam) ||
+          isNaN(finalExam) ||
+          isNaN(participation) ||
+          hwAvg < 0 ||
+          hwAvg > 100 ||
+          midExam < 0 ||
+          midExam > 100 ||
+          finalExam < 0 ||
+          finalExam > 100 ||
+          participation < 0 ||
+          participation > 100
+        ) {
+          document.getElementById("resultArea").innerHTML =
+            "Error: Invalid input. Please enter valid grades between 0-100.";
+          return;
+        }
+
+        // Calculate final average
+        var finalAverage = Math.round(
+          0.5 * hwAvg + 0.2 * midExam + 0.2 * finalExam + 0.1 * participation
+        );
+
+        // Determine letter grade
+        var letterGrade;
+        if (finalAverage >= 90) {
+          letterGrade = "A";
+        } else if (finalAverage >= 80) {
+          letterGrade = "B";
+        } else if (finalAverage >= 70) {
+          letterGrade = "C";
+        } else if (finalAverage >= 60) {
+          letterGrade = "D";
+        } else {
+          letterGrade = "F";
+        }
+
+        // Display results
+        var resultText = `Final Average: ${finalAverage}<br>Letter Grade: ${letterGrade}`;
+
+        if (letterGrade === "D" || letterGrade === "F") {
+          resultText += "<br>Student must retake the course";
+        }
+
+        document.getElementById("resultArea").innerHTML = resultText;
+      }
+
+      function clearForm() {
+        document.getElementById("gradeForm").reset();
+        document.getElementById("resultArea").innerHTML = "";
+      }
+    </script>
+    <a href="hw3.html">Return to Homework 3</a>
+  </body>
+</html>

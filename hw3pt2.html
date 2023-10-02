@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales Commission Calculator</title>
+    <link rel="stylesheet" href="hw1.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: 20px auto;
+      }
+
+      th,
+      td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        padding: 8px;
+      }
+
+      input[readonly] {
+        background-color: #f2f2f2;
+      }
+
+      .right-align {
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Sales Commission Calculator</h1>
+
+    <form id="salesForm">
+      <label
+        for="salespersonName"
+        title="Please make sure that the salesperson's name is spelled correctly"
+        >Salesperson's Name:</label
+      >
+      <input type="text" id="salespersonName" required />
+
+      <table>
+        <tr>
+          <th>Item</th>
+          <th>Qty Sold</th>
+          <th>Total</th>
+        </tr>
+        <tr>
+          <td>Item 1</td>
+          <td>
+            <input
+              type="number"
+              id="item1Qty"
+              min="0"
+              oninput="calculateTotal()"
+            />
+          </td>
+          <td>
+            <input type="text" id="item1Total" readonly class="right-align" />
+          </td>
+        </tr>
+        <tr>
+          <td>Item 2</td>
+          <td>
+            <input
+              type="number"
+              id="item2Qty"
+              min="0"
+              oninput="calculateTotal()"
+            />
+          </td>
+          <td>
+            <input type="text" id="item2Total" readonly class="right-align" />
+          </td>
+        </tr>
+        <tr>
+          <td>Item 3</td>
+          <td>
+            <input
+              type="number"
+              id="item3Qty"
+              min="0"
+              oninput="calculateTotal()"
+            />
+          </td>
+          <td>
+            <input type="text" id="item3Total" readonly class="right-align" />
+          </td>
+        </tr>
+        <tr>
+          <td>Item 4</td>
+          <td>
+            <input
+              type="number"
+              id="item4Qty"
+              min="0"
+              oninput="calculateTotal()"
+            />
+          </td>
+          <td>
+            <input type="text" id="item4Total" readonly class="right-align" />
+          </td>
+        </tr>
+      </table>
+
+      <label for="weeklyEarnings">Weekly Earnings:</label>
+      <input type="text" id="weeklyEarnings" readonly class="right-align" />
+
+      <label for="totalSales">Total Sales:</label>
+      <input type="text" id="totalSales" readonly class="right-align" />
+    </form>
+
+    <script>
+      $(document).ready(function () {
+        $("#salespersonName").tooltip();
+      });
+
+      function calculateTotal() {
+        var item1Qty = parseInt(document.getElementById("item1Qty").value) || 0;
+        var item2Qty = parseInt(document.getElementById("item2Qty").value) || 0;
+        var item3Qty = parseInt(document.getElementById("item3Qty").value) || 0;
+        var item4Qty = parseInt(document.getElementById("item4Qty").value) || 0;
+
+        var item1Total = (item1Qty * 20.99).toFixed(2);
+        var item2Total = (item2Qty * 12.75).toFixed(2);
+        var item3Total = (item3Qty * 9.95).toFixed(2);
+        var item4Total = (item4Qty * 35.89).toFixed(2);
+
+        document.getElementById("item1Total").value = item1Total;
+        document.getElementById("item2Total").value = item2Total;
+        document.getElementById("item3Total").value = item3Total;
+        document.getElementById("item4Total").value = item4Total;
+
+        var totalSales = (
+          parseFloat(item1Total) +
+          parseFloat(item2Total) +
+          parseFloat(item3Total) +
+          parseFloat(item4Total)
+        ).toFixed(2);
+        document.getElementById("totalSales").value = totalSales;
+
+        //should land 700 for 5000 sales
+        var weeklyEarnings = (totalSales * 0.09 + 250).toFixed(2);
+        document.getElementById("weeklyEarnings").value = weeklyEarnings;
+      }
+    </script>
+    <a href="hw3.html">Return to Homework 3</a>
+  </body>
+</html>
