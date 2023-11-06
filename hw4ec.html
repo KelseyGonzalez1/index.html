@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hollow Square Generator</title>
+  <style>
+    #square-result {
+      font-family: monospace;
+      white-space: pre;
+    }
+  </style>
+    <link rel="stylesheet" href="hw1.css">
+</head>
+<body>
+  <h1>Hollow Square Generator</h1>
+  <form id="square-form">
+    <label for="size-input">Enter a number (2-10):</label>
+    <input type="number" id="size-input" min="2" max="10" required>
+    <button type="button" id="generate-button">Generate Square</button>
+    <button type="button" id="clear-button">Clear</button>
+  </form>
+  <pre id="square-result"></pre>
+
+  <script>
+    const generateSquare = () => {
+      const size = parseInt(document.getElementById("size-input").value);
+      const squareResult = document.getElementById("square-result");
+
+  
+      squareResult.textContent = "";
+
+      if (isNaN(size) || size < 2 || size > 10) {
+        squareResult.textContent = "Invalid input. Please enter a number between 2 and 10.";
+      } else {
+        for (let i = 1; i <= size; i++) {
+          let row = "* ";
+          if (i === 1 || i === size) {
+           
+            row = "* ".repeat(size);
+          } else {
+         
+            row += "  ".repeat(size - 2) + "* ";
+          }
+          squareResult.textContent += row + "\n";
+        }
+      }
+    };
+
+    document.getElementById("generate-button").addEventListener("click", generateSquare);
+    document.getElementById("clear-button").addEventListener("click", () => {
+      document.getElementById("size-input").value = "";
+      document.getElementById("square-result").textContent = "";
+    });
+  </script>
+   <a href="hw4.html">Return to Homework 4</a>
+</body>
+</html>
+

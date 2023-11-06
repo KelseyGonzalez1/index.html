@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Looping and Draggable Example</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="hw1.css">
+    <style>
+        #draggable {
+            width: 100px;
+            height: 100px;
+            background-color: #ffff00;
+            color: rgb(225, 0, 105);
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Part 1</h1>
+    <h2>For Loop Results:</h2>
+    <script>
+        let product1 = 1, sum1 = 0;
+        for (let i = 5; i <= 25; i += 4) {
+            product1 *= i;
+        }
+        document.write("1. The result of 5 * 9 * 13 * 17 * 21 * 25 is " + product1.toLocaleString());
+        document.write("<p>");
+
+        for (let i = 5; i <= 25; i += 4) {
+            sum1 += i;
+        }
+        document.write("2. The result of 5 + 9 + 13 + 17 + 21 + 25 is " + sum1.toLocaleString());
+        document.write("<p>");
+    </script>
+
+    <h2>While Loop Results:</h2>
+    <script>
+        let product2 = 1, i = 3;
+        while (i <= 18) {
+            product2 *= i;
+            i = i + 3;
+        }
+        document.write("3. The result of 3 * 6 * 9 * 12 * 15 * 18 is " + product2.toLocaleString());
+        document.write("<p>");
+
+        let sum2 = 0, j = 0;
+        do {
+            sum2 += j;
+            j = j + 3;
+        } while (j <= 18);
+
+        document.write("4. The result of 3 + 6 + 9 + 12 + 15 + 18 is " + sum2.toLocaleString());
+        document.write("<p>");
+    </script>
+
+    <h2>Draggable</h2>
+    <div id="draggable">Drag this</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $("#draggable").draggable();
+    </script>
+     <a href="hw4.html">Return to Homework 4</a>
+</body>
+</html>
