@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Part 2 - Web Page</title>
+    <link rel="stylesheet" href="hw1.css">
+</head>
+<body>
+    <h1>Part 2 - Web Page</h1>
+    <label for="menu1">Select from the first dropdown menu:</label>
+    <select id="menu1" onchange="openSelectedWebsite(this.value)">
+        <option value="">Choose a website</option>
+        <option value="https://starbucks.com">Starbucks.com</option>
+        <option value="https://www.google.com">Google.com</option>
+        <option value="https://www.target.com">Target.com</option>
+    </select>
+
+    <label for="menu2">Select from the second dropdown menu:</label>
+    <select id="menu2">
+        <option value="">Choose a website</option>
+        <option value="https://www.apple.com">Apple.com</option> s
+        <option value="https://www.walmart.com">Walmart.com</option>
+        <option value="https://www.yahoo.com">Yahoo.com</option>
+    </select>
+    <button onclick="openSelectedWebsite2()">Open</button>
+
+    <script>
+        function openSelectedWebsite(url) {
+            if (url) {
+                window.open(url, '_blank');
+            }
+        }
+
+        function openSelectedWebsite2() {
+            const menu2 = document.getElementById('menu2');
+            const selectedValue = menu2.value;
+            if (selectedValue) {
+                window.open(selectedValue, '_blank');
+            }
+        }
+    </script>
+    <a href="hw5.html">Return to Homework 5</a>
+</body>
+</html>
