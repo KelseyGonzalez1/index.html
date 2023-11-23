@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 6 - Part 1</title>
+    <link rel="stylesheet" href="hw1.css">
+</head>
+<body>
+
+    <h1>Homework 6 - Part 1</h1>
+
+    <form id="numberForm">
+        <label for="decimalNumber">Enter a number with 4 decimals:</label>
+        <input type="text" id="decimalNumber" required pattern="\d+(\.\d{4})?" title="Enter a number with at least 4 decimals">
+        <br>
+        <button type="button" onclick="calculate()">Submit</button>
+        <button type="button" onclick="clearForm()">Clear Form</button>
+    </form>
+
+    <div id="outputResult"></div>
+
+    <script>
+        function calculate() {
+            var inputNumber = document.getElementById("decimalNumber").value;
+            if (/^\d+(\.\d{4})?$/.test(inputNumber)) {
+                inputNumber = parseFloat(inputNumber);
+                var roundedInteger = Math.round(inputNumber);
+                var squareRootRounded = Math.round(Math.sqrt(inputNumber));
+                var roundedTenths = inputNumber.toFixed(1);
+                var roundedHundredths = inputNumber.toFixed(2);
+                var roundedThousandths = inputNumber.toFixed(3);
+                var outputResult = document.getElementById("outputResult");
+                outputResult.innerHTML = "You typed number " + inputNumber.toFixed(4) + "<br>" +
+                    "Rounded to the nearest integer = " + roundedInteger + "<br>" +
+                    "Square root rounded to integer = " + squareRootRounded + "<br>" +
+                    "Rounded to the nearest 10th position = " + roundedTenths + "<br>" +
+                    "Rounded to the nearest 100th position = " + roundedHundredths + "<br>" +
+                    "Rounded to the nearest 1000th position = " + roundedThousandths;
+            } else {
+             
+                var outputResult = document.getElementById("outputResult");
+                outputResult.innerHTML = "You need to type a number with at least 4 decimals, please try again";
+            }
+        }
+
+        function clearForm() {
+            
+            document.getElementById("numberForm").reset();
+           
+            document.getElementById("outputResult").innerHTML = "";
+        }
+    </script>
+       <a href="hw6.html">Return to Homework 6</a>
+
+</body>
+</html>

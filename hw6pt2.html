@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 6 - Part 2</title>
+    <link rel="stylesheet" href="hw1.css">
+</head>
+<body>
+
+    <h1>Homework 6 - Part 2</h1>
+
+    <form id="searchForm">
+        <label for="longContent">Enter long content:</label>
+        <textarea id="longContent" rows="4" cols="50" required></textarea>
+        <br>
+        <label for="searchChar">Enter a single character:</label>
+        <input type="text" id="searchChar" maxlength="1" required pattern="[a-zA-Z]">
+        <br>
+        <button type="button" onclick="searchCharacter()">Submit</button>
+    </form>
+
+    <div id="outputResult"></div>
+
+
+    <script>
+        function searchCharacter() {
+            var content = document.getElementById("longContent").value;
+            var searchChar = document.getElementById("searchChar").value.toLowerCase(); 
+
+            var charCount = 0;
+            var index = content.toLowerCase().indexOf(searchChar);
+
+            while (index !== -1) {
+                charCount++;
+                index = content.toLowerCase().indexOf(searchChar, index + 1);
+            }
+
+            if (charCount > 0) {
+                
+                var outputResult = document.getElementById("outputResult");
+                outputResult.innerHTML = "Character '" + searchChar + "' appears " + charCount + " times in the content.";
+            } else {
+                
+                var errorMessage = "Search character '" + searchChar + "' not found in the content you typed";
+                var newWindow = window.open("", "_blank", "width=300,height=100,top=100,left=100");
+                newWindow.document.write("<p>" + errorMessage + "</p><button onclick='window.close()'>Close</button>");
+
+               
+                var outputResult = document.getElementById("outputResult");
+                outputResult.innerHTML = "";
+            }
+        }
+    </script>
+     <a href="hw6.html">Return to Homework 6</a>
+
+</body>
+</html>

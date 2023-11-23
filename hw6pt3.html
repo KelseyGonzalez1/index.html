@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 6 - Part 3</title>
+    <link rel="stylesheet" href="hw1.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+</head>
+<body>
+
+    <h1>Homework 6 - Part 3</h1>
+
+    <form id="phoneNumberForm">
+        <label for="phoneNumber">Type the phone number:</label>
+        <input type="text" id="phoneNumber" placeholder="(999) 999-9999" required>
+        <br>
+        <input type="text" id="areaCode" readonly>
+        <input type="text" id="firstThreeDigits" readonly>
+        <input type="text" id="lastFourDigits" readonly>
+        <br>
+        <button type="button" onclick="processPhoneNumber()">Start Process</button>
+        <button type="button" onclick="clearForm()">Clear Form</button>
+        <div id="errorMessage"></div>
+    </form>
+
+
+    <script>
+        
+        $(document).ready(function(){
+            $('#phoneNumber').mask('(999) 999-9999');
+        });
+
+        function processPhoneNumber() {
+            var phoneNumber = document.getElementById("phoneNumber").value;
+
+            var match = phoneNumber.match(/^\((\d{3})\) (\d{3})-(\d{4})$/);
+
+            if (match) {
+                
+                document.getElementById("areaCode").value = match[1];
+                document.getElementById("firstThreeDigits").value = match[2];
+                document.getElementById("lastFourDigits").value = match[3];
+
+             
+                document.getElementById("errorMessage").innerHTML = "";
+            } else {
+               
+                document.getElementById("errorMessage").innerHTML = "Please type the phone number in the format (999) 999-9999.";
+                
+                document.getElementById("areaCode").value = "";
+                document.getElementById("firstThreeDigits").value = "";
+                document.getElementById("lastFourDigits").value = "";
+            }
+        }
+
+        function clearForm() {
+            
+            document.getElementById("phoneNumberForm").reset();
+           
+            document.getElementById("areaCode").value = "";
+            document.getElementById("firstThreeDigits").value = "";
+            document.getElementById("lastFourDigits").value = "";
+            document.getElementById("errorMessage").innerHTML = "";
+        }
+    </script>
+    <a href="hw6.html">Return to Homework 6</a>
+
+</body>
+</html>
