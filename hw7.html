@@ -1,15 +1,51 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript - Homework 7</title>
-  <meta name="description" content="Homework 7 for JavaScript, jQuery, AJAX course at CCS"> 
-  <link rel="stylesheet" href="hw1.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="hw1.css">
+    <title>CNIT 133 Homework 7 - Object Model and Event Model</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-  <h1>Homework 7 Coming Soon!</h1>
-  
-  <p>Under Construction</p>
-  <a href="index.html">Return to Main Page: Homework 1</a> 
+
+    <header>
+        <h1>CNIT 133 Homework 7 - Object Model and Event Model</h1>
+    </header>
+
+    <nav>
+        <a href="#" class="part-link" data-part="part1">PART 1</a>
+
+        <a href="#" class="part-link" data-part="part2">PART 2</a>
+    </nav>
+
+    <section>
+        <div id="part1-description" class="part-description">
+            <p>
+                Text stylzation using buttons and boxes!
+                <a href="hw7pt1.html">Go to Part 1</a>
+            </p>
+        </div>
+        <div id="part2-description" class="part-description">
+            <p>
+                Navigation for Homework Assignments 2,3, and 4.
+                <a href="hw7pt2.html">Go to Part 2</a>
+            </p>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function() {
+            $(".part-description").hide(); 
+
+            $(".part-link").click(function(event) {
+                event.preventDefault(); 
+                var part = $(this).data("part");
+                $(".part-description").hide();
+                $("#" + part + "-description").show();
+            });
+        });
+    </script>
+    <a href="index.html">Return to Homework 1</a>
 </body>
 </html>

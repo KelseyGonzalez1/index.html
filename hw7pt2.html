@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="hw1.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 1;
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Homework Navigation</h1>
+    </header>
+    <nav>
+        <div class="dropdown" onmouseover="showDropdown('homework2-dropdown')">
+            <a href="hw2.html">Homework 2</a>
+            <div id="homework2-dropdown" class="dropdown-content">
+                <a href="hw2pt1.html">Part 1</a>
+                <a href="hw2pt2.html">Part 2</a>
+                <a href="hw2ec.html"> Extra Credit</a>
+            </div>
+        </div>
+        <div class="dropdown" onmouseover="showDropdown('homework3-dropdown')">
+            <a href="hw3.html">Homework 3</a>
+            <div id="homework3-dropdown" class="dropdown-content">
+                <a href="hw3pt1.html">Part 1</a>
+                <a href="hw3pt2.html">Part 2</a>
+            </div>
+        </div>
+        <div class="dropdown" onmouseover="showDropdown('homework4-dropdown')">
+            <a href="hw4.html">Homework 4</a>
+            <div id="homework4-dropdown" class="dropdown-content">
+                <a href="hw4pt1.html">Part 1</a>
+                <a href="hw4pt2.html">Part 2</a>
+                <a href="hw4ec.html">Extra Credit</a>
+            </div>
+        </div>
+    </nav>
+    <script>
+        function showDropdown(id) {
+            $(".dropdown-content").hide(); 
+            $("#" + id).show(); 
+        }
+    </script>
+     <a href="hw7.html">Return to Homework 7</a>
+</body>
+</html>

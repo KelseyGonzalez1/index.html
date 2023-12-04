@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="hw1.css">
+    <title>Part 1 - Style Customization</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>Part 1 - Customize the Text Below! </h1>
+    </header>
+
+    <section id="style-section">
+        <div id="styled-area">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,  </p>
+            <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua..</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. </p>
+        </div>
+
+        <form id="style-form">
+            <label>Background Color:</label>
+            <input type="radio" name="bg-color" value="lightblue"> Light Blue
+            <input type="radio" name="bg-color" value="lightgreen"> Light Green
+
+            <br>
+
+            <label>Text:</label>
+            <input type="checkbox" name="text-decoration" value="underline"> Underline
+            <input type="checkbox" name="text-decoration" value="bold"> Bold
+            <br>
+
+            <label>Font Size:</label>
+            <select name="font-size">
+                <option value="1em">Small</option>
+                <option value="1.5em">Medium</option>
+                <option value="2em">Large</option>
+            </select>
+        </form>
+
+    </section>
+    <script>
+        $(document).ready(function() {
+            $("input[name='bg-color'], input[name='text-decoration'], select[name='font-size']").change(updateStyles);
+
+            function updateStyles() {
+                var bgColor = $("input[name='bg-color']:checked").val();
+                var textDecoration = $("input[name='text-decoration']:checked").map(function() {
+                    return this.value;
+                }).get().join(" ");
+                var fontSize = $("select[name='font-size']").val();
+
+                $("#styled-area").css({
+                    "background-color": bgColor,
+                    "text-decoration": textDecoration,
+                    "font-size": fontSize,
+                    "font-weight": textDecoration.includes("bold") ? "bold" : "normal" 
+                });
+            }
+        });
+    </script>
+
+<a href="hw7.html">Return to Homework 7</a>
+</body>
+</html>
