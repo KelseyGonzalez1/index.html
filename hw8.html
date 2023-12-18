@@ -1,15 +1,112 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JavaScript - Homework 8</title>
-  <meta name="description" content="Homework 8 for JavaScript, jQuery, AJAX course at CCS"> 
+  <title>Homework 8 - AJAX Application</title>
   <link rel="stylesheet" href="hw1.css">
+  <style>
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 5px;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Homework 8: Coming Soon!</h1>
+
+  <h1>Homework 8 - AJAX Application</h1>
+
+
+  <button type="button" onclick="loadDoc()">Get CD collection</button>
+  <br><br>
+  <table id="demo"></table>
+
+  <script>
+    function loadDoc() {
+      const xhttp = new XMLHttpRequest();
+      xhttp.onload = function () {
+        myFunction(this);
+      }
+      xhttp.open("GET", "hw8.xml");
+      xhttp.send();
+    }
   
-  <p>Under Construction</p>
-  <a href="index.html">Return to Main Page: Homework 1</a> 
+    function myFunction(xml) {
+      const xmlDoc = xml.responseXML;
+      const x = xmlDoc.getElementsByTagName("CD");
+      let table = "<tr><th>Artist</th><th>Title</th><th>Country</th><th>Company</th><th>Price</th><th>Year</th></tr>";
+      for (let i = 0; i < x.length; i++) {
+        table += "<tr><td>" +
+          x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+          "</td><td>" +
+          x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
+          "</td><td>" +
+          x[i].getElementsByTagName("COUNTRY")[0].childNodes[0].nodeValue +
+          "</td><td>" +
+          x[i].getElementsByTagName("COMPANY")[0].childNodes[0].nodeValue +
+          "</td><td>" +
+          x[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue +
+          "</td><td>" +
+          x[i].getElementsByTagName("YEAR")[0].childNodes[0].nodeValue +
+          "</td></tr>";
+      }
+      document.getElementById("demo").innerHTML = table;
+    }
+  </script>
+
+  <h2>Explanation of AJAX</h2>
+  <p>AJAX (Asynchronous JavaScript and XML) makes websites work smoothly.
+     It allows web pages to talk to servers without waiting for the entire page to reload.
+      In our assignment, when you hit the "Get CD collection" button,
+      AJAX uses something called XMLHttpRequest to ask the server for CD details.
+      The server responds, and with the help of JavaScript, we can neatly display
+       this CD information in a table on the webpage.</p>
+  <p>When we look closer at how AJAX works on this page, we start by creating an XMLHttpRequest object
+     -the messenger between the webpage and the server.
+     We then instruct it on what to do when the server responds
+     , like updating the table. The beauty of AJAX lies in its asynchronous operation,
+      it gets things done without holding up the whole webpage. With AJAX the webpage
+       looks and works great. </p>
+
+  <h2>REST API Report: Cat Facts API</h2>
+
+  <p>The Cat Facts API offers a daily cat fact service, utilizing Node.js, Angular, and Tasker.
+     Here's a concise report for our development team at FelineTech.</p>
+
+  <ul>
+      <li>Add and view fact recipients.</li>
+      <li>Send daily cat facts via text.</li>
+      <li>Countdown clock for the next fact.</li>
+      <li>Catbot auto-reply for recipient texts.</li>
+      <li>Catversation log view.</li>
+      <li>Submit personal facts.</li>
+      <li>Copy-paste-able cat facts.</li>
+      <li>Admin console and Twitter bot.</li>
+  </ul>
+
+  <h3>Technical Aspects:</h3>
+
+  <ul>
+      <li><strong>Response File:</strong> API responds in JSON.</li>
+      <li><strong>Authentication:</strong> No key required.</li>
+      <li><strong>Cost:</strong> Free with no ads.</li>
+      <li><strong>Documentation:</strong> <a href="https://alexwohlbruck.github.io/cat-facts/?ref=apilist.fun">Cat Facts API</a>.</li>
+  </ul>
+
+  <h3>Recommendation:</h3>
+
+  <p>The Cat Facts API aligns with FelineTech's user-centric approach.
+    It offers engaging features without cost, ensuring accessibility.
+     Integration is straightforward with clear documentation. Recommended for application enhancement.</p>
+
+
+  <a href="hw1.html">Return to Homework 1</a>
 </body>
 </html>
